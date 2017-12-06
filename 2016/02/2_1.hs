@@ -34,8 +34,8 @@ type Coord = (Int, Int)
 clamp :: Int -> Int
 clamp = min 1 . max (-1)
 
-keypad :: Map Coord Int
-keypad = M.fromList [((x-1, y-1), i+1) | i <- [0..8], let (y,x) = (i `divMod` 3)]
+keypad :: Map Coord Char
+keypad = M.fromList [((x-1, y-1), intToDigit (i+1)) | i <- [0..8], let (y,x) = (i `divMod` 3)]
 
 go :: Coord -> Char -> Coord
 go (x,y) 'U' = (x, clamp $ y - 1)
@@ -46,11 +46,11 @@ go (x,y) 'R' = (clamp $ x + 1, y)
 followSequence :: String -> Coord
 followSequence seq = foldl go (0,0) seq
 
-numAtSequence :: String -> Int
+numAtSequence :: String -> Char
 numAtSequence seq = keypad ! (followSequence seq)
 
 main = do
     input <- readFile "2_1_input.txt"
     let seqs = lines input
-    let code = map intToDigit $ map numAtSequence seqs
+    let code = map numAtSequence seqs
     print code
