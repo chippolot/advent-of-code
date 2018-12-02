@@ -7,7 +7,7 @@ history = Set[0]
 
 lines.cycle do |line|
     sum += line.to_i
-    if history.add?(sum).nil?
+    if not history.add?(sum)
         puts sum
         return
     end
