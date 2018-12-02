@@ -1,4 +1,4 @@
-lines = File.read("input.txt").split("\n").sort
+lines = File.read("input.txt").split("\n")
 lines.combination(2) { |a, b|
     same = ""
     diffs = 0
