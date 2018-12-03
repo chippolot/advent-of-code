@@ -6,8 +6,7 @@ grid = Hash.new
 non_overlaps = Set.new
 
 lines.each do |line|
-    matches = line.match(/#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/).to_a.map(&:to_i)
-    _, id, x, y, w, h = matches
+    _, id, x, y, w, h =  line.match(/#(\d*) @ (\d*),(\d*): (\d*)x(\d*)/).to_a.map(&:to_i)
 
     no_overlaps = true
     for i in x..(x+w-1) do
