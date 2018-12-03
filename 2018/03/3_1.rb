@@ -1,9 +1,6 @@
-require 'set'
-
 lines = File.readlines("input.txt")
 
 grid = Hash.new(0)
-
 overlaps = 0
 
 lines.each do |line|
