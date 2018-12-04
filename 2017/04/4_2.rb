@@ -12,5 +12,5 @@ Under this new system policy, how many passphrases are valid?
 =end
 
 puts File.readlines('input.txt')
-         .map(&:split)
-         .reduce(0) { |s, w| w.uniq == w && !w.combination(2).any?{|x,y| x.chars.sort == y.chars.sort} ? s + 1 : s }
+         .map {|x| x.split.map{ |y| y.chars.sort }}
+         .reduce(0) { |s, w| w.uniq == w ? s + 1 : s }
