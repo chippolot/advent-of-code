@@ -20,16 +20,15 @@ def reacts(a, b)
     a != b && a.upcase == b.upcase
 end
 
+def collapse_polymer(polymer)
+    polymer.chars.reduce("") { |str, c1|
+        str << c1
+        str.length < 2 || !reacts(str[-2], str[-1]) ? str : str[0..-3]
+    }
+end
+
 puts ('a'..'z').map { |unit|
-    polymer = orig_polymer.tr(unit+unit.upcase, "")
-    prev_length = polymer.length
-    loop do
-        polymer = polymer.chars.reduce("") { |str, c1|
-            str += c1
-            str.length < 2 || !reacts(str[-2], str[-1]) ? str : str[0..-3]
-        }
-        break if polymer.length == prev_length
-        prev_length = polymer.length
-    end
+    polymer = orig_polymer.tr(unit + unit.upcase, "")
+    while polymer != polymer = collapse_polymer(polymer) do end
     polymer.length
 }.min

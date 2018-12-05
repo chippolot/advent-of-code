@@ -28,13 +28,13 @@ def reacts(a, b)
     a != b && a.upcase == b.upcase
 end
 
-prev_length = polymer.length
-loop do
-    polymer = polymer.chars.reduce("") { |str, c1|
-        str += c1
+
+def collapse_polymer(polymer)
+    polymer.chars.reduce("") { |str, c1|
+        str << c1
         str.length < 2 || !reacts(str[-2], str[-1]) ? str : str[0..-3]
     }
-    break if polymer.length == prev_length
-    prev_length = polymer.length
 end
+
+while polymer != polymer = collapse_polymer(polymer) do end
 p polymer.length
