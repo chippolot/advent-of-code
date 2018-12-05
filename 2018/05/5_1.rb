@@ -28,7 +28,6 @@ def reacts(a, b)
     a != b && a.upcase == b.upcase
 end
 
-
 def collapse_polymer(polymer)
     polymer.chars.reduce("") { |str, c1|
         str << c1
