@@ -43,17 +43,16 @@ coords = File.readlines("input.txt").map { |x| x.split(', ').map(&:to_i) }
 
 x0, y0 = coords[0]
 
-center = coords.reduce([nil, nil]) { |(cx, cy), (x, y)| [(cx || 0) + x, (cy || 0) + y] }
-center[0] /= coords.count
-center[1] /= coords.count
+bounds = coords.reduce([x0,y0,x0,y0]) { |(bx0, by0, bx1, by1), (x, y)|
+    [[bx0, x].min, [by0, y].min, [bx1, x].max, [by1, y].max]
+}
 
 max_dist = 10000
-search_radius = 150 # increased number until area stopped increasing... cheating? you decide!
 
 area = 0
-for x in -search_radius..search_radius do
-    for y in -search_radius..search_radius do
-        area +=1 if dist_from_all([center[0] + x, center[1] + y], coords) < max_dist
+for x in bounds[0]..bounds[2] do
+    for y in bounds[1]..bounds[3] do
+        area +=1 if dist_from_all([x, y], coords) < max_dist
     end
 end
 
