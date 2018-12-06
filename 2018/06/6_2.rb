@@ -42,7 +42,6 @@ end
 coords = File.readlines("input.txt").map { |x| x.split(', ').map(&:to_i) }
 
 x0, y0 = coords[0]
-
 bounds = coords.reduce([x0,y0,x0,y0]) { |(bx0, by0, bx1, by1), (x, y)|
     [[bx0, x].min, [by0, y].min, [bx1, x].max, [by1, y].max]
 }
