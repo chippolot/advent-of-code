@@ -52,18 +52,18 @@ What is the value of the root node?
 def sum_metadata_pt1(nums)
     sum = 0
     node_count = nums.shift()
-    num_metadata = nums.shift()
-    (0..node_count-1).each { sum += sum_metadata_pt1(nums) }
-    (0..num_metadata-1).each { sum += nums.shift() }
+    metadata_count = nums.shift()
+    node_count.times.each { sum += sum_metadata_pt1(nums) }
+    metadata_count.times.each { sum += nums.shift() }
     return sum
 end
 
 def sum_metadata_pt2(nums)
     sum = 0
     node_count   = nums.shift()
-    num_metadata = nums.shift()
-    child_sums   = (0..node_count-1).map{ sum_metadata_pt2(nums) }
-    metadata     = (0..num_metadata-1).map { nums.shift() }
+    metadata_count = nums.shift()
+    child_sums   = node_count.times.map{ sum_metadata_pt2(nums) }
+    metadata     = metadata_count.times.map { nums.shift() }
 
     if node_count == 0 
         sum += metadata.inject(&:+)
