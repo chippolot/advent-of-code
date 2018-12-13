@@ -14,7 +14,6 @@ class MarbleList
     end
 
     def initialize
-        @head = nil
         @curr = nil
     end
 
@@ -39,7 +38,7 @@ class MarbleList
             @curr.next = node
             @curr = node
         else
-            @head = @curr = node
+            @curr = node
             @curr.next = @curr.prev = @curr
         end
     end
