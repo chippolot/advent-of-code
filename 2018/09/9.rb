@@ -54,18 +54,6 @@ class MarbleList
         end
         return 0
     end
-
-    def to_s
-        str = ""
-        curr = @head
-        loop do
-            str += "#{curr.value} " if curr != @curr
-            str += "(#{curr.value}) " if curr == @curr
-            curr = curr.next
-            break if curr == @head
-        end
-        return str
-    end
 end
 
 def high_score(num_players, num_turns)
